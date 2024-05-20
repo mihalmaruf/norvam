@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+
+:root{
+    --main-bg: #ffffff;
+    --soft-bg: #fafafa;
+    --dark-bg: #222b3c;
+    --main-color-text: #292929;
+    --soft-color-text: #525252;
+    --hover-text: #ffffff;
+
+    --primary-color: #E80DB4;
+    --secondary-color: #0d92ff;
+    --gradient-color: linear-gradient(89.97deg, #AE67FA 1.84%, #F49867 102.67%);
+    --side-link-hover-color: #f6f6f6;
+    --side-text-color: #808191;
+    --light-shadow1: rgba(0, 0, 0, 0.02) 0px 4px 12px;
+    --default-transition: all 300ms ease-in-out;
+
+    font-family: "Lato", sans-serif;
+    --font-size: 16px;
+    --line-height: 1.6;
+    --font-weight: 400;
+}
+
+[data-theme="light"] {
+  --main-bg: #061123;
+  --soft-bg: #032145;
+  --main-color-text: #ffffff;
+  --soft-color-text: #ffffff;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+body {
+    font-family: var(--font-family-lato);
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+}
+  
+ul {
+    list-style-type: none;
+}
+
+.page-wrapper {
+    background-color: var(--soft-bg);
+    min-height: 100vh;
+    overflow: hidden;
+    transition: 0.5s ease-in-out;
+  }
+  
+  .content-wrapper {
+    background-color: var(--soft-bg);
+    padding: 20px 20px;
+    margin-left: 220px;
+  
+    @media (max-width: 1400px) {
+      padding: 20px 20px;
+    }
+  
+    @media (max-width: 1200px) {
+      padding: 20px;
+      margin-left: 56px;
+    }
+  
+    @media (max-width: 768px) {
+      margin-left: 0;
+      padding: 24px;
+      padding-bottom: 5vh;
+    }
+  
+    @media (max-width: 576px) {
+      margin-left: 0;
+      padding: 16px;
+      padding-bottom: 10vh;
+    }
+  }

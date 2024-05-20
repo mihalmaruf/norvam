@@ -1,0 +1,22 @@
+.notes{
+    display: flex;
+    gap: 15px;
+
+    .new_note {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .all_notes{
+        flex: 1;
+      }
+}
+
+@media (max-width: 768px) {
+  .notes {
+  flex-direction: column;
+  gap: 15px;
+  }
+  }
