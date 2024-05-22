@@ -8,6 +8,7 @@ import AiPage from "./pages/ai/AiPage";
 import { NotesPage } from "./pages/notes/NotesPage";
 import TasksPage from "./pages/tasks/TasksPage";
 import { useState } from "react";
+import PrivateRoute from "./routes/privateRoute";
 
 const App = () => {
   const [theme, setTheme] = useState("dark");
@@ -18,19 +19,19 @@ const App = () => {
   const Layout = () => {
     return (
       <div data-theme={theme} className="page-wrapper">
-      <Sidebar />
-      <div className="content-wrapper">
-        <Navbar changeTheme={changeTheme} currentTheme={theme} />
-        <Outlet />
-      </div>
+        <Sidebar />
+        <div className="content-wrapper">
+          <Navbar changeTheme={changeTheme} currentTheme={theme} />
+          <Outlet />
+        </div>
       </div>
     );
   };
 
   const Main = () => {
-    return  (
+    return (
       <>
-      <HomePage />
+        <HomePage />
       </>
     )
   }
@@ -50,7 +51,7 @@ const App = () => {
         },
         {
           path: "/notes",
-          element: <NotesPage />,
+          element: <PrivateRoute><NotesPage /></PrivateRoute>,
         },
         {
           path: "/tasks",

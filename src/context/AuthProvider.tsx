@@ -11,6 +11,7 @@ import {
 } from 'firebase/auth';
 
 import { firebaseConfig } from '../firebase-config'
+import { USER_SESSION } from '../constants/env';
 
 interface AuthContextType {
   createUser: (email: string, password: string) => Promise<UserCredential>;
@@ -32,7 +33,7 @@ interface AuthContextProviderProps {
 }
 
 export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<unknown>({});
+  const [user, setUser] = useState<unknown>(null);
 
   const createUser = (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -41,11 +42,13 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
   const signIn = async (email: string, password: string) => {
     const userIn = await signInWithEmailAndPassword(auth, email, password);
     setUser(userIn.user);
+    sessionStorage.setItem(USER_SESSION, JSON.stringify(userIn.user));
     return userIn;
   };
 
   const logout = () => {
     setUser(null);
+    sessionStorage.removeItem(USER_SESSION);
     return signOut(auth);
   };
 
@@ -57,6 +60,16 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
       unsubscribe();
     };
   }, []);
+
+  useEffect(() => {
+
+    if (user == null) {
+      if (sessionStorage.getItem(USER_SESSION)) {
+        const sessionUser = JSON.parse(sessionStorage.getItem(USER_SESSION) || '');
+        setUser(sessionUser);
+      }
+    }
+  }, [user]);
 
   return (
     <UserContext.Provider value={{ createUser, user, logout, signIn }}>
