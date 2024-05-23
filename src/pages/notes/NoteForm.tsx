@@ -8,7 +8,7 @@ import { Note } from "../../models/notes.model";
 const NoteForm = (): JSX.Element => {
 
     const userContext = useContext(UserContext);
-    console.log(userContext?.user)
+    //console.log(userContext?.user)
     //here we can get all data from Firebase user, for example: email, uid, emailVerified, etc...
 
     const noteContext = useContext(Context);
@@ -21,7 +21,7 @@ const NoteForm = (): JSX.Element => {
 
 
         const newNote: Note = {
-            id: `userid:userid;${userContext?.user?.uid}`,
+            id: userContext?.user.uid,
             text,
             createdAt: new Date()
         };
