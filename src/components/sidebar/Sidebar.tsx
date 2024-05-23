@@ -19,8 +19,7 @@ const Sidebar = () => {
   const userContext = useContext(UserContext);
   const navigate = useNavigate();
 
-  const logOut = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const logOut = async () => {
 
     try {
       await userContext?.logout();
@@ -92,7 +91,7 @@ const Sidebar = () => {
                 <span className="menu_link_icon">
                   <MdOutlineLogout size={20} />
                 </span>
-                <span className="menu_link_text" >Logout</span>
+                <span className="menu_link_text" onClick={logOut} >Logout</span>
               </li>
             </ul>
           </div>
