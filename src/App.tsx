@@ -9,6 +9,9 @@ import { NotesPage } from "./pages/notes/NotesPage";
 import TasksPage from "./pages/tasks/TasksPage";
 import { useState } from "react";
 import PrivateRoute from "./routes/privateRoute";
+import Profile from "./pages/profile/Profile";
+import Marketing from "./pages/ai/AiPage";
+import SocialAi from "./components/marketing/socialMedia/SocialAi";
 
 const App = () => {
   const [theme, setTheme] = useState("dark");
@@ -39,7 +42,7 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: <PrivateRoute><Layout /></PrivateRoute>,
       children: [
         {
           path: "/",
@@ -51,12 +54,20 @@ const App = () => {
         },
         {
           path: "/notes",
-          element: <PrivateRoute><NotesPage /></PrivateRoute>,
+          element: <NotesPage />,
         },
         {
           path: "/tasks",
           element: <TasksPage />,
         },
+        {
+          path: "/profile",
+          element: <Profile />,
+        },
+        {
+          path: '/ai/social',
+          element: <SocialAi />
+        }
       ],
     },
     {

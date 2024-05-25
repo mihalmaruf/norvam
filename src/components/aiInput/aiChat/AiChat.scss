@@ -1,16 +1,23 @@
-.ai_conatiner{
+.aichat-container{
+    background-color: var(--main-bg);
+    border-radius: 5px;
+    padding: 20px 15px;
+    box-shadow: var(--light-shadow1);
+    width: 100%;
+    color: var(--main-color-text);
+    min-height: 86vh;
+
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 90vh;
-    justify-content: center;
+    justify-content: space-between;
 
     .ai_response{
         color: var(--main-color-text);
         padding: 20px;
         margin-bottom: 2vh;
         border-radius: 5px;
-        height: 60vh;
+        height: 70vh;
         overflow-y: auto;
         border: 2px solid #E80DC6;
     }
@@ -63,7 +70,6 @@
 
     .search_box{
         width: 100%;
-        padding: 0px 20px;
 
         .search_field{
             display: flex;
@@ -72,7 +78,7 @@
             gap: 20px;
             background-color: white;
             padding: 10px 20px;
-            border-radius: 30px;
+            border-radius: 10px;
             border: 2px solid #0546ff;
 
             textarea{
@@ -94,22 +100,5 @@
                 }
             }
         }
-    }
-
-}
-
-
-
-@media screen and (max-width: 650px) {
-    .ai-heading h1 {
-        font-size: 48px;
-        line-height: 60px;
-    }
-}
-
-@media screen and (max-width: 490px) {
-    .ai-heading h1 {
-        font-size: 36px;
-        line-height: 48px;
     }
 }

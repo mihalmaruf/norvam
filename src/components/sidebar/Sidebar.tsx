@@ -56,7 +56,7 @@ const Sidebar = () => {
                   <span className="menu_link_icon">
                     <WiStars size={20} />
                   </span>
-                  <span className="menu_link_text">Ai Prompt</span>
+                  <span className="menu_link_text">Ai Help</span>
                 </Link>
               </li>
               <li className="menu_item">
@@ -80,18 +80,18 @@ const Sidebar = () => {
           <div className="sidebar_menu sidebar_menu2">
             <ul className="menu_list">
               <li className="menu_item">
-
-                <span className="menu_link_icon">
+              <Link to="/profile">
+              <span className="menu_link_icon">
                   <MdOutlinePeople size={20} />
                 </span>
                 <span className="menu_link_text">Profile</span>
+              </Link>
               </li>
-              <li className="menu_item">
-
+              <li className="menu_item bottom_nav" onClick={logOut}>
                 <span className="menu_link_icon">
                   <MdOutlineLogout size={20} />
                 </span>
-                <span className="menu_link_text" onClick={logOut} >Logout</span>
+                <span className="menu_link_text" >Logout</span>
               </li>
             </ul>
           </div>
@@ -103,19 +103,19 @@ const Sidebar = () => {
           <MdOutlineGridView size={18} />
           <span className="mobile-name">Dashboard</span>
         </Link>
-        <Link to="/" className="nav-item">
+        <Link to="/ai" className="nav-item">
           <WiStars size={20} />
           <span className="mobile-name">Ai Help</span>
         </Link>
-        <Link to="/" className="nav-item">
+        <Link to="/tasks" className="nav-item">
           <LuListTodo size={20} />
           <span className="mobile-name">Tasks</span>
         </Link>
-        <Link to="/" className="nav-item">
+        <Link to="/notes" className="nav-item">
           <CgNotes size={18} />
           <span className="mobile-name">Notes</span>
         </Link>
-        <Link to="/" className="nav-item">
+        <Link to="/profile" className="nav-item">
           <MdOutlineShoppingBag size={20} />
           <span className="mobile-name">Profile</span>
         </Link>

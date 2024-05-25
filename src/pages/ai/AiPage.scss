@@ -1,0 +1,31 @@
+.marketingContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 75vh;
+    justify-content: center;
+    padding: 5rem;
+    text-align: center;
+
+    .title{
+        color: var(--main-color-text);
+            font-weight: 600;
+            font-size: 40px;
+            line-height: 75px;
+            margin-bottom: 2rem;
+    }
+
+    .cards{
+    --auto-grid-min-size: 25rem;
+  
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+    grid-gap: 1rem;
+}
+}
+
+@media(max-width: 768px){
+    .marketingContainer{
+        padding: 0;
+    }
+  }

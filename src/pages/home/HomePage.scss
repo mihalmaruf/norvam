@@ -1,0 +1,42 @@
+.wrapper{
+    display: flex;
+    gap: 15px;
+
+    @media (max-width: 576px) {
+        flex-direction: column;
+      }
+
+    .main {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .title-container{
+            color: var(--main-color-text);
+            margin-top: 20px;
+        }
+
+        .list-container{
+            gap: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    
+        .dash-container{
+            gap: 15px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        
+            @media (max-width: 576px) {
+                flex-direction: column;
+              }
+        }
+      }
+
+      .aiChat{
+        flex: 1;
+      }
+}

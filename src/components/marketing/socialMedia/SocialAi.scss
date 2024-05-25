@@ -47,10 +47,32 @@
 
         .gradient__text {
             color: var(--main-color-text);
+            font-family: var(--font-family);
             font-weight: 600;
             font-size: 40px;
             line-height: 75px;
+            letter-spacing: -0.04em;
         }
+    }
+
+    .ai_selection {
+        margin-top: 3rem;
+
+        .dropdown{
+            padding: 0.5rem 1rem;
+            color: white;
+            background: #0546ff;
+            font-family: var(--font-family);
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 25px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 0.5rem 0.5rem;
+    
+    }
     }
 
     .image{
