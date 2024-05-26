@@ -11,7 +11,8 @@ import { useState } from "react";
 import PrivateRoute from "./routes/privateRoute";
 import Profile from "./pages/profile/Profile";
 import Marketing from "./pages/ai/AiPage";
-import SocialAi from "./components/marketing/socialMedia/SocialAi";
+import SocialAi from "./components/aiInput/socialMedia/SocialAi";
+import AiInput from "./components/aiInput/AiInput";
 
 const App = () => {
   const [theme, setTheme] = useState("dark");

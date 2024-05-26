@@ -155,34 +155,14 @@ const SocialAi = () => {
         </div>
         :
         <div className="ai-heading">
-          <span className="gradient__text">Do you want to step in to the future before others?</span>
+          <span className="gradient__text">Select Social Media Channel and Upload the Post</span>
 
           <div className="ai_selection">
             <select className="dropdown" value={selectedOption} onChange={handleOptionChange}>
-              <option value="">Social Media Caption</option>
-              <option value="Generate SEO friendly Caption with 3 tags for Facebook.">Facebook</option>
-              <option value="Generate SEO friendly Caption with 3 tags for Instagram.">Instagram</option>
-            </select>
-
-            <select className="dropdown" value={selectedOption} onChange={handleOptionChange}>
-              <option value="">Website Content</option>
-              <option value="Generate SEO friendly website content.">Web Content</option>
-              <option value="Generate SEO friendly Blog Ideas.">Blog Ideas</option>
-              <option value="Generate SEO friendly Meta Title and Descripion.">SEO Meta</option>
-            </select>
-
-            <select className="dropdown" value={selectedOption} onChange={handleOptionChange}>
-              <option value="">Math Problems</option>
-              <option value="Solve the following Calculas Problem.">Calculas</option>
-              <option value="Solve the following Algebra Problem.">Algebra</option>
-            </select>
-
-            <select className="dropdown" value={selectedOption} onChange={handleOptionChange}>
-              <option value="">Code Helper</option>
-              <option value="Solve the following React Js or React Native issue.">React/React Native</option>
-              <option value="Solve the following Javascript issue.">Javascript</option>
-              <option value="Solve the following Node Js issue.">Node Js</option>
-              <option value="Solve the following Flutter issue.">Flutter</option>
+              <option value="">Social Media Platorm</option>
+              <option value="Generate SEO friendly Caption with 8 tags for Facebook.">Facebook</option>
+              <option value="Generate SEO friendly Caption with 8 tags for Instagram.">Instagram</option>
+              <option value="Generate SEO friendly Caption with 8 tags for Linkedin.">Linkedin</option>
             </select>
           </div>
         </div>
@@ -194,7 +174,7 @@ const SocialAi = () => {
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
             id="myTextarea"
-            placeholder="User helper or Enter prompt here" />
+            placeholder="Enter prompt here" />
             <div className="submit">
             <div className="imageUpload">
     <label htmlFor="uploadFile">

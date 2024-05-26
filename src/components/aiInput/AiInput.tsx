@@ -16,6 +16,7 @@ const AiInput = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [subject, setSubject] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
   const [showImage, setShowImage] = useState(true);
 
   const [image, setImage] = useState("");
@@ -30,7 +31,7 @@ const AiInput = () => {
       let model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
       if (isImage) {
-        const result = await model.generateContent([userInput, imageInineData]);
+        const result = await model.generateContent([selectedOption, userInput, imageInineData]);
         const response = await result.response;
         setGeneratedText(response.text());
       } else {
@@ -60,7 +61,7 @@ const AiInput = () => {
           },
         ];
 
-        const parts = [{ text: userInput }];
+        const parts = [{ text: selectedOption + userInput }];
         const result = await model.generateContent({
           contents: [{ role: "user", parts }],
           generationConfig,
@@ -72,6 +73,7 @@ const AiInput = () => {
       setError("Failed to generate text. Please try again.");
     } finally {
       setIsLoading(false);
+      setSelectedOption("");
       setUserInput("");
     }
   };
@@ -81,6 +83,11 @@ const AiInput = () => {
     textarea.style.height = "0px"; // Reset height to get intrinsic height
     textarea.style.height = `${textarea.scrollHeight}px`;
   }, [userInput]);
+
+
+  const handleOptionChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
+    setSelectedOption(e.target.value);
+  };
 
   const handleClick = async () => {
     generateText(true);
@@ -134,7 +141,7 @@ const AiInput = () => {
             </div>
             :
             <>
-             {image && <img src={image} className="image" />}
+             <img src={image} className="image" />
               <p>{
                 typeof generatedText === 'string' ? generatedText.split('\n').map((line, index) => (
                   <React.Fragment key={index}>
@@ -149,6 +156,35 @@ const AiInput = () => {
         :
         <div className="ai-heading">
           <span className="gradient__text">Do you want to step in to the future before others?</span>
+
+          <div className="ai_selection">
+            <select className="dropdown" value={selectedOption} onChange={handleOptionChange}>
+              <option value="">Social Media Caption</option>
+              <option value="Generate SEO friendly Caption with 3 tags for Facebook.">Facebook</option>
+              <option value="Generate SEO friendly Caption with 3 tags for Instagram.">Instagram</option>
+            </select>
+
+            <select className="dropdown" value={selectedOption} onChange={handleOptionChange}>
+              <option value="">Website Content</option>
+              <option value="Generate SEO friendly website content.">Web Content</option>
+              <option value="Generate SEO friendly Blog Ideas.">Blog Ideas</option>
+              <option value="Generate SEO friendly Meta Title and Descripion.">SEO Meta</option>
+            </select>
+
+            <select className="dropdown" value={selectedOption} onChange={handleOptionChange}>
+              <option value="">Math Problems</option>
+              <option value="Solve the following Calculas Problem.">Calculas</option>
+              <option value="Solve the following Algebra Problem.">Algebra</option>
+            </select>
+
+            <select className="dropdown" value={selectedOption} onChange={handleOptionChange}>
+              <option value="">Code Helper</option>
+              <option value="Solve the following React Js or React Native issue.">React/React Native</option>
+              <option value="Solve the following Javascript issue.">Javascript</option>
+              <option value="Solve the following Node Js issue.">Node Js</option>
+              <option value="Solve the following Flutter issue.">Flutter</option>
+            </select>
+          </div>
         </div>
       }
 
