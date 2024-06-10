@@ -13,6 +13,7 @@ const SigninPage = (): JSX.Element => {
     const userContext = useContext(UserContext);
     const navigate = useNavigate();
 
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
@@ -27,34 +28,35 @@ const SigninPage = (): JSX.Element => {
     };
 
 
-    return (
-<div className="auth">
-<div className="imgBx">
-    <img src={cover} alt="Login background image" />
-</div>
-<div className="contentBx">
-    <div className="formBx">
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
-            <div className="inputBx">
-                <span>Email</span>
-                <input type="email" onChange={(e) => setEmail(e.target.value)} />
-            </div>
-            <div className="inputBx">
-                <span>Password</span>
-                <input onChange={(e) => setPassword(e.target.value)} type='password' />
-            </div>
 
-                <button>
-                    Sign In
-                </button>
-            <div className="inputBx">
-                <p>Don't have an account yet? <Link to="/signup">Sign Up</Link></p>
+    return (
+        <div className="auth">
+            <div className="imgBx">
+                <img src={cover} alt="Login background image" />
             </div>
-        </form>
-    </div>
-</div>
-</div>
+            <div className="contentBx">
+                <div className="formBx">
+                    <h2>Login</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className="inputBx">
+                            <span>Email</span>
+                            <input type="email" onChange={(e) => setEmail(e.target.value)} />
+                        </div>
+                        <div className="inputBx">
+                            <span>Password</span>
+                            <input onChange={(e) => setPassword(e.target.value)} type='password' />
+                        </div>
+
+                        <button>
+                            Sign In
+                        </button>
+                        <div className="inputBx">
+                            <p>Don't have an account yet? <Link to="/signup">Sign Up</Link></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     )
 }
 

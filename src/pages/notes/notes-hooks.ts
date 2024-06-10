@@ -1,13 +1,14 @@
 
-import { db} from '../../firebase-config'
+import { db } from '../../firebase-config'
 import { collection, addDoc, getDocs, deleteDoc, doc, query, where } from "firebase/firestore";
 import { Note, NoteData } from '../../models/notes.model';
-import { useState, useEffect, useCallback, useContext } from 'react';
-import { UserContext } from '../../context/AuthProvider';
+import { useState, useEffect, useCallback } from 'react';
+
+import useUserSession from '../../context/user-session-hooks';
 
 function useNotes() {
 
-    const userContext = useContext(UserContext);
+    const userSessionHooks = useUserSession();
     const [notes, setNotes] = useState<NoteData[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [loaded, setLoaded] = useState<boolean>(false);
@@ -18,7 +19,7 @@ function useNotes() {
         if (notes.length === 0 && !loading && !loaded) {
             setLoading(true);
             
-            const q = query(collection(db, "notes"), where("note.id", "==", userContext?.user.uid));
+            const q = query(collection(db, "notes"), where("note.id", "==", userSessionHooks.getUserSession()?.uid));
 
             await getDocs(q)
                 .then((querySnapshot) => {
@@ -31,7 +32,7 @@ function useNotes() {
                 })
                 
         }
-    }, [notes.length, loading, loaded, userContext?.user.uid]);
+    }, [notes.length, loading, loaded, userSessionHooks]);
 
 
     const addNote = async (note: Note) => {

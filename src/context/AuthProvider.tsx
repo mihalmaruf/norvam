@@ -13,6 +13,7 @@ import {
 import { firebaseConfig } from '../firebase-config'
 import { USER_SESSION } from '../constants/env';
 
+
 interface AuthContextType {
   createUser: (email: string, password: string) => Promise<UserCredential>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -35,6 +36,7 @@ interface AuthContextProviderProps {
 export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) => {
   const [user, setUser] = useState<unknown>(null);
 
+
   const createUser = (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -46,6 +48,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
     return userIn;
   };
 
+
   const logout = () => {
     setUser(null);
     sessionStorage.removeItem(USER_SESSION);
@@ -53,23 +56,15 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
   };
 
   useEffect(() => {
+
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
     return () => {
       unsubscribe();
     };
-  }, []);
-
-  useEffect(() => {
-
-    if (user == null) {
-      if (sessionStorage.getItem(USER_SESSION)) {
-        const sessionUser = JSON.parse(sessionStorage.getItem(USER_SESSION) || '');
-        setUser(sessionUser);
-      }
-    }
   }, [user]);
+
 
   return (
     <UserContext.Provider value={{ createUser, user, logout, signIn }}>

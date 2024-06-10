@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom'
-import { UserContext } from '../context/AuthProvider';
+import useUserSession from '../context/user-session-hooks';
 
 interface IProps {
     children: React.ReactNode;
@@ -8,9 +8,10 @@ interface IProps {
 
 const PrivateRoute = ({ children }: IProps) => {
 
-    const userContext = useContext(UserContext);
+    const userSessionHooks = useUserSession();
+    const user = userSessionHooks.getUserSession();
 
-    const allowed = userContext?.user?.uid !== undefined && userContext?.user?.uid !== '';
+    const allowed = user?.uid !== undefined && user?.uid !== '';
 
     return allowed ? <>{children}</> : <Navigate to="/signin" />;
 }
