@@ -71,6 +71,7 @@ const TasksPage = () => {
                     [taskIndex]: { $set: task }
                 });
                 setTaskStatus(newTasks);
+                //update task using tasks-hooks
             }
 
         },
