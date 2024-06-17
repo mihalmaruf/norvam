@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { ReactNode } from "react";
 import useTasks from "./tasks-hooks";
-import { Task, TaskData } from "@/app/models/tasks.model";
+import { Task, TaskData } from "../../models/tasks.model";
 
 interface TasksContextType {
     loading: boolean;
@@ -16,9 +17,9 @@ const initState: TasksContextType = {
     tasks: [],
     message: '',
 
-    addTask: async (note) => { },
-    updateTask: async (id, task) => { },
-    deleteTask: async (id) => { },
+    addTask: async (_note) => { },
+    updateTask: async (_id, _task) => { },
+    deleteTask: async (_id) => { },
 }
 
 export const Context = React.createContext<TasksContextType>(initState);
