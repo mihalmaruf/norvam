@@ -7,15 +7,17 @@ import update from "immutability-helper";
 import KanbanColumn from "./KanbanColumn";
 import KanbanItem from "./KanbanItem";
 import { Context, TasksContextProvider } from "./TasksProvider";
+import { TaskData } from "../../models/tasks.model";
 
 //mock data - we will no longer use it, gonna pull daata from taskhooks
-const tasksList = [
-    { id: 1, title: "First Task", status: "backlog" },
-    { id: 2, title: "Second Task", status: "backlog" },
-    { id: 3, title: "Third Task", status: "new" },
-    { id: 4, title: "Fourth Task", status: "going" },
-    { id: 5, title: "Fifth Task", status: "review" },
-    { id: 6, title: "Sixth Task", status: "done" },
+const tasksList: TaskData[] = [
+    { id: "1", task: { title: "First Task", status: "backlog", userId: '' } },
+    { id: "1", task: { title: "First Task", status: "backlog", userId: '' } },
+    { id: "2", task: { title: "Second Task", status: "backlog", userId: '' } },
+    { id: "3", task: { title: "Third Task", status: "new", userId: '' } },
+    { id: "4", task: { title: "Fourth Task", status: "going", userId: '' } },
+    { id: "5", task: { title: "Fifth Task", status: "review", userId: '' } },
+    { id: "6", task: { title: "Sixth Task", status: "done", userId: '' } },
 ];
 
 const channels = ["backlog", "new", "wip", "review", "done"];
@@ -62,12 +64,13 @@ const TasksList = () => {
     const { tasks = [] } = useContext(Context);
 
     const changeTaskStatus = useCallback(
-        (id: number, status: string) => {
+        (id: string, status: string) => {
             let task = myTask.find(task => task.id === id);
 
             if (task) {
                 const taskIndex = myTask.indexOf(task);
-                task = { ...task, status };
+                task = { ...task };
+                task.task.status = status;
                 const newTasks = update(myTask, {
                     [taskIndex]: { $set: task }
                 });
@@ -95,10 +98,10 @@ const TasksList = () => {
                                     <div style={classes.columnHead}>{Object.entries(labelsMap).find(lab => lab[0] === channel)?.at(1)}</div>
                                     <div>
                                         {myTask
-                                            .filter(item => item.status === channel)
+                                            .filter(item => item.task.status === channel)
                                             .map(item => (
                                                 <KanbanItem key={item.id} id={item.id}>
-                                                    <div style={classes.item}>{item.title}</div>
+                                                    <div style={classes.item}>{item.task.title}</div>
                                                 </KanbanItem>
                                             ))}
                                     </div>
