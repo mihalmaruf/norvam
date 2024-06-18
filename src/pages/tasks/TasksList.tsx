@@ -59,7 +59,7 @@ const classes = {
 
 const TasksList = () => {
 
-    const { tasks = [], loading, loaded } = useContext(Context);
+    const { tasks = [], loading, loaded, updateTask } = useContext(Context);
     const [myTask, setTaskStatus] = useState<TaskData[]>(tasks);
 
 
@@ -82,6 +82,7 @@ const TasksList = () => {
                 });
                 setTaskStatus(newTasks);
                 //update task using tasks-hooks
+                updateTask(task.id, task.task)
             }
 
         },
