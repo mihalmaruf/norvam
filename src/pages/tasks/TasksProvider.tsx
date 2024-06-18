@@ -5,6 +5,7 @@ import { Task, TaskData } from "../../models/tasks.model";
 
 interface TasksContextType {
     loading: boolean;
+    loaded: boolean;
     tasks: TaskData[];
     addTask: (note: Task) => Promise<void>;
     updateTask: (id: string, task: Task) => Promise<void>;
@@ -14,6 +15,7 @@ interface TasksContextType {
 
 const initState: TasksContextType = {
     loading: false,
+    loaded: false,
     tasks: [],
     message: '',
 
@@ -29,10 +31,10 @@ interface TasksContextProviderProps {
 }
 
 export const TasksContextProvider = ({ children }: TasksContextProviderProps) => {
-    const { loading, tasks, addTask, updateTask, deleteTask, message, } = useTasks();
+    const { loading, loaded, tasks, addTask, updateTask, deleteTask, message, } = useTasks();
 
     return (
-        <Context.Provider value={{ loading, tasks, addTask, updateTask, deleteTask, message }}>
+        <Context.Provider value={{ loading, loaded, tasks, addTask, updateTask, deleteTask, message }}>
             {children}
         </Context.Provider>
     );

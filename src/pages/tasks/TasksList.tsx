@@ -10,15 +10,14 @@ import { Context, TasksContextProvider } from "./TasksProvider";
 import { TaskData } from "../../models/tasks.model";
 
 //mock data - we will no longer use it, gonna pull daata from taskhooks
-const tasksList: TaskData[] = [
-    { id: "1", task: { title: "First Task", status: "backlog", userId: '' } },
-    { id: "1", task: { title: "First Task", status: "backlog", userId: '' } },
-    { id: "2", task: { title: "Second Task", status: "backlog", userId: '' } },
-    { id: "3", task: { title: "Third Task", status: "new", userId: '' } },
-    { id: "4", task: { title: "Fourth Task", status: "going", userId: '' } },
-    { id: "5", task: { title: "Fifth Task", status: "review", userId: '' } },
-    { id: "6", task: { title: "Sixth Task", status: "done", userId: '' } },
-];
+// const tasksList: TaskData[] = [
+//     { id: "1", task: { title: "First Task", status: "backlog", id: '' } },
+//     { id: "2", task: { title: "Second Task", status: "backlog", id: '' } },
+//     { id: "3", task: { title: "Third Task", status: "new", id: '' } },
+//     { id: "4", task: { title: "Fourth Task", status: "going", id: '' } },
+//     { id: "5", task: { title: "Fifth Task", status: "review", id: '' } },
+//     { id: "6", task: { title: "Sixth Task", status: "done", id: '' } },
+// ];
 
 const channels = ["backlog", "new", "wip", "review", "done"];
 const labelsMap = {
@@ -60,8 +59,15 @@ const classes = {
 
 const TasksList = () => {
 
-    const [myTask, setTaskStatus] = useState(tasksList);
-    const { tasks = [] } = useContext(Context);
+    const { tasks = [], loading, loaded } = useContext(Context);
+    const [myTask, setTaskStatus] = useState<TaskData[]>(tasks);
+
+
+    if (!loading && loaded && myTask.length === 0) {
+        setTaskStatus(tasks);
+    }
+
+
 
     const changeTaskStatus = useCallback(
         (id: string, status: string) => {
@@ -97,7 +103,7 @@ const TasksList = () => {
                                 <div style={classes.column}>
                                     <div style={classes.columnHead}>{Object.entries(labelsMap).find(lab => lab[0] === channel)?.at(1)}</div>
                                     <div>
-                                        {myTask
+                                        {myTask && myTask
                                             .filter(item => item.task.status === channel)
                                             .map(item => (
                                                 <KanbanItem key={item.id} id={item.id}>

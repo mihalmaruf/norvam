@@ -86,7 +86,7 @@ function useTasks() {
         tasksCallback();
     }, [tasksCallback]);
 
-    return { loading, tasks, addTask, updateTask, deleteTask, message };
+    return { loading, loaded, tasks, addTask, updateTask, deleteTask, message };
 }
 
 export default useTasks;
