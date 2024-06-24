@@ -21,7 +21,7 @@ const NoteForm = (): JSX.Element => {
 
 
         const newNote: Note = {
-            id: userContext?.user.uid,
+            userId: userContext?.user.uid,
             text,
             createdAt: new Date()
         };

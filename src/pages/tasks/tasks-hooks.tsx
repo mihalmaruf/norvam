@@ -49,15 +49,9 @@ function useTasks() {
 
     const updateTask = async (taskId: string, task: Task) => {
         const docRef = doc(db, "tasks", taskId);
-        const { title, status, description, id } = task;
 
         await updateDoc(docRef, {
-            task: {
-                id: id,
-                title: title,
-                status: status,
-                description: description,
-            },
+            task: task,
 
         }).then(() => {
             setMessage("Entire Task has been updated successfully.");
@@ -67,7 +61,6 @@ function useTasks() {
 
             setMessage(`Error: updating Task: , ${error}`);
         })
-
 
     };
 
